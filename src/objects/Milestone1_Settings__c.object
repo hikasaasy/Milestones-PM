@@ -10,8 +10,9 @@
         <defaultValue>true</defaultValue>
         <description>When a Task is marked &apos;Complete&apos;, Automatically unsubscribe the Assigned User from the Chatter Feed for the Task.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When a Task is marked &apos;Complete&apos;, Automatically unsubscribe the Assigned User from the Chatter Feed for the Task.</inlineHelpText>
+        <inlineHelpText>タスクが完了済みになったときに自動的にタスクのChatterフィードのユーザ割り当てを解除します。</inlineHelpText>
         <label>Auto UnFollow A Complete Task</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -19,26 +20,29 @@
         <defaultValue>true</defaultValue>
         <description>When a Task is Assigned to a User, automatically subscribe the user to follow the task.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When a Task is Assigned to a User, automatically subscribe the user to follow the task.</inlineHelpText>
+        <inlineHelpText>ユーザがタスクに割り当てられた時に、自動的にユーザにタスクをフォローさせます。</inlineHelpText>
         <label>Auto Follow A Task</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Auto_Unfollow_Reassignment__c</fullName>
         <defaultValue>true</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Automatically unsubscribe the currently assigned user from the task when it is reassigned to another user.</inlineHelpText>
+        <inlineHelpText>別ユーザが割り当てられた時に自動的に現在のユーザの登録を解除します。</inlineHelpText>
         <label>Auto Unfollow Reassignment</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Default_Milestone_Alias__c</fullName>
         <description>Default milestone for email to task.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Insert a valid alias milestone by default to receive the mail about task&apos;s creation when a alias is not specified in the mail&apos;s subject.</inlineHelpText>
+        <inlineHelpText>エイリアスがメールサブジェクトに設定されていない場合は、デフォルトではタスク作成のメールを受信した時に有効なエイリアスのマイルストーンを挿入します。</inlineHelpText>
         <label>Default Milestone Alias</label>
         <length>30</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -48,6 +52,7 @@
         <label>Report Id: Blocked Tasks by Project</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -57,6 +62,7 @@
         <label>Report Id: My Blocked Tasks</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -66,6 +72,7 @@
         <label>Report Id: My Late Tasks</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -75,6 +82,7 @@
         <label>Report Id: My Tasks By Priority, Project</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -84,16 +92,18 @@
         <label>Report Id: My Tasks By Project + Milesto</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Report_Id_My_tasks_by_project__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Report to use for showing my tasks by project.  pv0 = project id (15 char) and pv1 = Assign to name.</inlineHelpText>
+        <inlineHelpText>プロジェクト順に私のタスクをレポートします。pv0 = プロジェクトID（15文字）、pv1 = 割り当て名</inlineHelpText>
         <label>Report Id: My tasks by project</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -103,6 +113,7 @@
         <label>Report Id: Open Task Status by Project</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -112,6 +123,7 @@
         <label>Report Id: Overdue Tasks by Project</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -121,6 +133,7 @@
         <label>Report Id: Project, Milestone, Open Task</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -130,6 +143,7 @@
         <label>Report Id: Task Status By Project</label>
         <length>15</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>

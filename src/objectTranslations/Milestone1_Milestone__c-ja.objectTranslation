@@ -281,7 +281,6 @@
             <section>Task Information (Calculated)</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Project Milestone Name --></nameFieldLabel>
     <validationRules>
         <errorMessage>マイルストーンエイリアスは空白スペースを含めません。</errorMessage>
         <name>Alias_must_not_contain_spaces</name>

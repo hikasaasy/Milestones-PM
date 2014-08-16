@@ -5,6 +5,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Clone</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -17,11 +21,19 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -32,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Force.com Labs - PM - This is a nag object. Allows the Nag Engine to execute against objects.</description>
     <enableActivities>false</enableActivities>
@@ -46,6 +59,7 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Assigned To Running User</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -57,6 +71,7 @@
         <referenceTo>User</referenceTo>
         <relationshipName>Project_Nags</relationshipName>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -68,6 +83,7 @@ IF( Project_Task__c &lt;&gt; null, Project_Task__r.Due_Date__c,Today())))</formu
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Deadline</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
@@ -76,6 +92,7 @@ IF( Project_Task__c &lt;&gt; null, Project_Task__r.Due_Date__c,Today())))</formu
         <label>Description</label>
         <length>200</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -88,6 +105,7 @@ IF( Project_Task__c &lt;&gt; null, HYPERLINK(Project__c, &quot;Task Link&quot;),
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Link</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -110,6 +128,7 @@ IF( Project_Task__c &lt;&gt; null, HYPERLINK(Project__c, &quot;Task Link&quot;),
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -118,6 +137,7 @@ IF( Project_Task__c &lt;&gt; null, HYPERLINK(Project__c, &quot;Task Link&quot;),
         <label>Nag Status</label>
         <length>20</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -130,6 +150,7 @@ IF( Project_Task__c &lt;&gt; null, Project_Task__c,&apos;&apos;)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Parent ID</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -142,6 +163,7 @@ IF( Project_Task__c &lt;&gt; null, Project_Task__r.Name,&apos;&apos;)))</formula
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Parent Name</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -155,6 +177,7 @@ IF( Project_Task__c &lt;&gt; null, Project_Task__r.OwnerId__c,null)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Parent Owner Id</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -166,6 +189,7 @@ IF( Project_Task__c &lt;&gt; null, Project_Task__r.OwnerId__c,null)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Parent Complete Status</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -178,6 +202,7 @@ IF( Project_Task__c &lt;&gt; null, &apos;Task&apos;,&apos;&apos;)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Parent Type</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -189,6 +214,7 @@ IF( Project_Task__c &lt;&gt; null, &apos;Task&apos;,&apos;&apos;)))</formula>
         <referenceTo>Milestone1_Milestone__c</referenceTo>
         <relationshipName>Project_Nags</relationshipName>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -199,6 +225,7 @@ IF( Project_Task__c &lt;&gt; null, &apos;Task&apos;,&apos;&apos;)))</formula>
         <referenceTo>Milestone1_Task__c</referenceTo>
         <relationshipName>Project_Nags</relationshipName>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -209,6 +236,7 @@ IF( Project_Task__c &lt;&gt; null, &apos;Task&apos;,&apos;&apos;)))</formula>
         <referenceTo>Milestone1_Project__c</referenceTo>
         <relationshipName>Project_Nags</relationshipName>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <label>Nag</label>
@@ -217,11 +245,11 @@ IF( Project_Task__c &lt;&gt; null, &apos;Task&apos;,&apos;&apos;)))</formula>
         <label>Project Nag Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Nags</pluralLabel>
+    <pluralLabel>Nag</pluralLabel>
     <searchLayouts>
         <excludedStandardButtons>Accept</excludedStandardButtons>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>

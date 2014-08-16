@@ -64,5 +64,4 @@
         <label>状態</label>
         <name>Status__c</name>
     </fields>
-    <nameFieldLabel><!-- Project Snapshot Name --></nameFieldLabel>
 </CustomObjectTranslation>

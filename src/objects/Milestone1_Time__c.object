@@ -5,6 +5,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Clone</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -17,11 +21,19 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -32,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Force.com Labs - PM - A time entry record which allows users to log times against milestone tasks.</description>
     <enableActivities>false</enableActivities>
@@ -42,28 +55,31 @@
     <fields>
         <fullName>Date__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The date the time was incurred. Defaults to today if left blank.</inlineHelpText>
+        <inlineHelpText>この時間が発生した日時。デフォルトではその日が入る。</inlineHelpText>
         <label>Date Incurred</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>A description about the time. For example, why the time was incurred.</inlineHelpText>
+        <inlineHelpText>この時間の説明。どうした発生するのか、など。</inlineHelpText>
         <label>Description</label>
         <length>5000</length>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Hours__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The number of hours charged. Note: This cannot be more than 1 day (24 hours).</inlineHelpText>
+        <inlineHelpText>割り当てられている時間。24時間以内にする必要がある。</inlineHelpText>
         <label>Hours</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -73,6 +89,7 @@
         <label>ImportID</label>
         <length>30</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -80,22 +97,25 @@
         <fullName>Incurred_By__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <inlineHelpText>The user who incurred the time being charged. Defaults to current user if left blank.</inlineHelpText>
+        <inlineHelpText>この時間を使うユーザ。デフォルトでは現在のユーザ。</inlineHelpText>
         <label>Incurred By</label>
         <referenceTo>User</referenceTo>
         <relationshipName>Project_Times_Incurred</relationshipName>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Project_Task__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The task that is having time charged to it.</inlineHelpText>
+        <inlineHelpText>この時間を使うタスク。</inlineHelpText>
         <label>Project Task</label>
         <referenceTo>Milestone1_Task__c</referenceTo>
         <relationshipLabel>Times</relationshipLabel>
         <relationshipName>Project_Times</relationshipName>
         <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
@@ -110,7 +130,7 @@
         <label>Project Time Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Times</pluralLabel>
+    <pluralLabel>Time</pluralLabel>
     <searchLayouts>
         <customTabListAdditionalFields>Project_Task__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Incurred_By__c</customTabListAdditionalFields>

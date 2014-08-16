@@ -2,6 +2,6 @@
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Getting Started</label>
     <mobileReady>false</mobileReady>
-    <motif>Custom13: Box</motif>
+    <motif>Custom13: 箱</motif>
     <page>Milestone1_GettingStarted</page>
 </CustomTab>

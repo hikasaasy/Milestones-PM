@@ -2,6 +2,6 @@
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Calendar</label>
     <mobileReady>false</mobileReady>
-    <motif>Custom10: Moon</motif>
+    <motif>Custom10: 月</motif>
     <page>Milestone1_Calendar_Large</page>
 </CustomTab>

@@ -5,6 +5,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Clone</actionName>
         <content>Milestone1_Clone_Milestone</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
@@ -19,11 +23,19 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -34,6 +46,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Force.com Labs - PM - Milestones are significant events in the life-cycle of a Project. Milestones can have tasks and sub-milestones associated with them.</description>
     <enableActivities>false</enableActivities>
@@ -45,45 +58,49 @@
         <fullName>Actual_Expense_From_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Calculated from expense records related to tasks on child milestones</inlineHelpText>
+        <inlineHelpText>子マイルストーンのタスクから算出した実際費用</inlineHelpText>
         <label>Actual Expense From Sub-Milestones</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Actual_Expense_From_Tasks__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Calculated from expense records related to tasks on this milestone</inlineHelpText>
+        <inlineHelpText>親マイルストーンのタスクから算出した実際費用</inlineHelpText>
         <label>Actual Expense From Tasks</label>
         <summarizedField>Milestone1_Task__c.Total_Expense__c</summarizedField>
         <summaryForeignKey>Milestone1_Task__c.Project_Milestone__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>Actual_Hours_From_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Calculated from time records related to tasks on child milestones</inlineHelpText>
+        <inlineHelpText>子マイルストーのタスクンから算出した実際時間</inlineHelpText>
         <label>Actual Hours From Sub-Milestones</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Actual_Hours_From_Tasks__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Calculated from time records related to tasks on this milestone</inlineHelpText>
+        <inlineHelpText>このマイルストーンのタスクから算出された総時間</inlineHelpText>
         <label>Actual Hours From Tasks</label>
         <summarizedField>Milestone1_Task__c.Total_Hours__c</summarizedField>
         <summaryForeignKey>Milestone1_Task__c.Project_Milestone__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
@@ -91,11 +108,12 @@
         <caseSensitive>false</caseSensitive>
         <description>This is the alias for a milestone.</description>
         <externalId>false</externalId>
-        <inlineHelpText>An alias helps you associate a task to a milestone using the single line entry home page component.</inlineHelpText>
+        <inlineHelpText>マイルストーンをタスクに関連付けできる1行エイリアス</inlineHelpText>
         <label>Milestone Alias</label>
         <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
     </fields>
@@ -103,19 +121,20 @@
         <fullName>Blocked_Tasks_in_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>How many tasks are blocked in sub-milestones?</inlineHelpText>
+        <inlineHelpText>ブロックされている子マイルストーンのタスク</inlineHelpText>
         <label>Blocked Tasks (in Sub-Milestones)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Blocked_Tasks_in_Tasks__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>How many tasks are flagged as blocked?</inlineHelpText>
+        <inlineHelpText>ブロックされているタスク</inlineHelpText>
         <label>Blocked Tasks (in Tasks)</label>
         <summaryFilterItems>
             <field>Milestone1_Task__c.Blocked__c</field>
@@ -124,60 +143,66 @@
         </summaryFilterItems>
         <summaryForeignKey>Milestone1_Task__c.Project_Milestone__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>Complete_Tasks_in_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Number of complete tasks related to sub-milestones</inlineHelpText>
+        <inlineHelpText>子マイルストーンの完了タスク</inlineHelpText>
         <label>Complete Tasks (in Sub-Milestones)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Complete_Tasks_in_Tasks__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Number of complete tasks related to this milestone</inlineHelpText>
+        <inlineHelpText>このマイルストーンの完了タスク</inlineHelpText>
         <label>Complete Tasks (in Tasks)</label>
         <summaryFilterItems>
             <field>Milestone1_Task__c.Complete__c</field>
             <operation>equals</operation>
-            <value>true</value>
+            <value>True</value>
         </summaryFilterItems>
         <summaryForeignKey>Milestone1_Task__c.Project_Milestone__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>Complete__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>This signifies that this milestone has been completed.</inlineHelpText>
+        <inlineHelpText>マイルストーンが完了したかどうか</inlineHelpText>
         <label>Complete</label>
         <trackFeedHistory>true</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Deadline__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The date that this deadline needs to be finished by.</inlineHelpText>
+        <inlineHelpText>期限日</inlineHelpText>
         <label>Deadline</label>
         <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>A general description of the milestone.</inlineHelpText>
+        <inlineHelpText>マイルストーンの概要</inlineHelpText>
         <label>Description</label>
         <length>5000</length>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
     </fields>
@@ -186,11 +211,12 @@
         <externalId>false</externalId>
         <formula>Deadline__c -  Kickoff__c + 1</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Days between Kickoff and Deadline.</inlineHelpText>
+        <inlineHelpText>開始日から期限日までの日数</inlineHelpText>
         <label>Duration</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -198,81 +224,88 @@
         <fullName>Estimated_Expense_From_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Calculated from tasks on child milestones</inlineHelpText>
+        <inlineHelpText>子マイルストーンのタスクから算出した推定費用</inlineHelpText>
         <label>Estimated Expense From Sub-Milestones</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Estimated_Expense_From_Tasks__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Calculated from tasks on this milestone</inlineHelpText>
+        <inlineHelpText>親マイルストーンのタスクから算出した推定費用</inlineHelpText>
         <label>Estimated Expense From Tasks</label>
         <summarizedField>Milestone1_Task__c.Estimated_Expense__c</summarizedField>
         <summaryForeignKey>Milestone1_Task__c.Project_Milestone__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>Estimated_Hours_From_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Calculated from tasks on child milestones</inlineHelpText>
+        <inlineHelpText>子マイルストーンのタスクから算出した推定時間</inlineHelpText>
         <label>Estimated Hours From Sub-Milestones</label>
         <precision>16</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Estimated_Hours_From_Tasks__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Calculated from tasks on this milestone</inlineHelpText>
+        <inlineHelpText>親マイルストーンのタスクから算出した推定時間</inlineHelpText>
         <label>Estimated Hours From Tasks</label>
         <summarizedField>Milestone1_Task__c.Estimated_Hours__c</summarizedField>
         <summaryForeignKey>Milestone1_Task__c.Project_Milestone__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>Expense_Budget__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>The expense budget for the milestone.</inlineHelpText>
+        <inlineHelpText>マイルストーンの予算</inlineHelpText>
         <label>Milestone Expense Budget</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Expense_Budget_from_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>The expense budget all the sub milestones of this milestone.</inlineHelpText>
+        <inlineHelpText>全ての子マイルストーンの予算</inlineHelpText>
         <label>Expense Budget from Sub-Milestones</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Hours_Budget__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>The hours budget for the milestone.</inlineHelpText>
+        <inlineHelpText>マイルストーンの予定時間</inlineHelpText>
         <label>Milestone Hours Budget</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -280,52 +313,56 @@
         <fullName>Hours_Budget_from_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>The total hours budget for all the sub milestones for this milestone.</inlineHelpText>
+        <inlineHelpText>全ての子マイルストーンの総予定時間</inlineHelpText>
         <label>Hours Budget from Sub-Milestones</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>ImportID__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>An Import ID used during the XML export/import process only.</inlineHelpText>
+        <inlineHelpText>XMLのインポート/エクスポート時にのみ利用するインポートID</inlineHelpText>
         <label>Import ID</label>
         <length>18</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Kickoff__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>When should this milestone kickoff?</inlineHelpText>
+        <inlineHelpText>マイルストーンの開始日</inlineHelpText>
         <label>Kickoff</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Late_Tasks_in_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Number of incomplete and overdue tasks related to child milestones</inlineHelpText>
+        <inlineHelpText>子マイルストーンの未完了遅延タスク</inlineHelpText>
         <label>Late Tasks (in Sub-Milestones)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Late_Tasks_in_Tasks_2__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>How many tasks are late?</inlineHelpText>
+        <inlineHelpText>遅延タスク</inlineHelpText>
         <label>Late Tasks (in Tasks)2</label>
         <summaryFilterItems>
             <field>Milestone1_Task__c.Complete__c</field>
@@ -339,17 +376,19 @@
         </summaryFilterItems>
         <summaryForeignKey>Milestone1_Task__c.Project_Milestone__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>Late_Tasks_in_Tasks__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Number of incomplete and overdue tasks related to this milestone</inlineHelpText>
+        <inlineHelpText>このマイルストーンの未完了遅延タスク</inlineHelpText>
         <label>Late Tasks (in Tasks)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -361,6 +400,7 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>NameClean</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -371,6 +411,7 @@
         <externalId>false</externalId>
         <label>Okay to Reparent</label>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -387,6 +428,7 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Open, Late &amp; Blocked Tasks  - Deprecated</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -394,19 +436,20 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <fullName>Open_Tasks_in_Sub_Milestones__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Number of incomplete tasks related to child milestones</inlineHelpText>
+        <inlineHelpText>子マイルストーンの未完了タスク</inlineHelpText>
         <label>Open Tasks (in Sub-Milestones)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Open_Tasks_in_Tasks__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Number of incomplete tasks related to this milestone</inlineHelpText>
+        <inlineHelpText>このマイルストーンの未完了タスク</inlineHelpText>
         <label>Open Tasks (in Tasks)</label>
         <summaryFilterItems>
             <field>Milestone1_Task__c.Complete__c</field>
@@ -415,6 +458,7 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         </summaryFilterItems>
         <summaryForeignKey>Milestone1_Task__c.Project_Milestone__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
@@ -427,6 +471,7 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Open vs. Complete Tasks - Deprecated</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -434,13 +479,14 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <fullName>Parent_Milestone__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <inlineHelpText>The parent milestone for this milestone if applicable.</inlineHelpText>
+        <inlineHelpText>割り当て可能な場合は、このマイルストーンに対する親マイルストーン</inlineHelpText>
         <label>Parent Milestone</label>
         <referenceTo>Milestone1_Milestone__c</referenceTo>
         <relationshipLabel>Child Milestones</relationshipLabel>
         <relationshipName>Child_Milestones</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -450,6 +496,7 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <length>18</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -457,13 +504,14 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <fullName>Predecessor_Milestone__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <inlineHelpText>The milestone which must be complete before you start this one. The Predecessor Milestone end date must be before the current Milestone start date.</inlineHelpText>
+        <inlineHelpText>このマイルストーンを開始するより前に完了する必要があるマイルストーン。前のマイルストーンの終了日は現在のマイルストーンの開始日より前である必要があります。</inlineHelpText>
         <label>Predecessor Milestone</label>
         <referenceTo>Milestone1_Milestone__c</referenceTo>
         <relationshipLabel>Successor Milestones</relationshipLabel>
         <relationshipName>Successor_Milestones</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -471,11 +519,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>NULLVALUE(Kickoff__c -  Project__r.Kickoff__c,0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>How many days after project kickoff does this milestone kickoff?</inlineHelpText>
+        <inlineHelpText>プロジェクト開始日からの経過日数</inlineHelpText>
         <label>Project Kickoff Offset</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -483,13 +532,14 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <fullName>Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <inlineHelpText>The project this milestone is assigned to. If this is a sub-milestone this field is empty.</inlineHelpText>
+        <inlineHelpText>このプロジェクトが割り当てられるプロジェクトです。もしこのプロジェクトが子プロジェクトの場合は空白になります。</inlineHelpText>
         <label>Project</label>
         <referenceTo>Milestone1_Project__c</referenceTo>
         <relationshipLabel>Milestones</relationshipLabel>
         <relationshipName>Project_Milestones</relationshipName>
         <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -497,11 +547,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Actual_Expense_From_Tasks__c + Actual_Expense_From_Sub_Milestones__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Calculated from expense records on tasks for this milestone and all child milestones</inlineHelpText>
+        <inlineHelpText>親子マイルストーンのタスクから算出した実際の費用</inlineHelpText>
         <label>Total Actual Expense</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -509,11 +560,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Actual_Hours_From_Tasks__c + Actual_Hours_From_Sub_Milestones__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Calculated from time records on tasks for this milestone and all child milestones</inlineHelpText>
+        <inlineHelpText>親子マイルストーンのタスクから算出した総実際時間</inlineHelpText>
         <label>Total Actual Hours</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -522,11 +574,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Blocked_Tasks_in_Tasks__c +  Blocked_Tasks_in_Sub_Milestones__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>How many tasks are flagged as blocked?</inlineHelpText>
+        <inlineHelpText>ブロックされている総タスク</inlineHelpText>
         <label>Total Blocked Tasks</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -539,6 +592,7 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -547,11 +601,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Estimated_Expense_From_Tasks__c + Estimated_Expense_From_Sub_Milestones__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Calculated from task records for this milestone and all child milestones</inlineHelpText>
+        <inlineHelpText>親子マイルストーンのタスクから算出した推定費用</inlineHelpText>
         <label>Total Estimated Expense</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -559,11 +614,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Estimated_Hours_From_Tasks__c + Estimated_Hours_From_Sub_Milestones__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Calculated from task records for this milestone and all child milestones</inlineHelpText>
+        <inlineHelpText>親子マイルストーンのタスクから算出した推定時間</inlineHelpText>
         <label>Total Estimated Hours</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -572,11 +628,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Total_Estimated_Expense__c - Total_Actual_Expense__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Calculated as total estimated expense - total actual expense</inlineHelpText>
+        <inlineHelpText>総予算から実際費用を引いたもの</inlineHelpText>
         <label>Total Expense Balance</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -584,11 +641,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Expense_Budget__c +  Expense_Budget_from_Sub_Milestones__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Calculated as expense budget + expense budget from sub milestones</inlineHelpText>
+        <inlineHelpText>予算とサブマイルストーンからの予算から算出</inlineHelpText>
         <label>Total Expense Budget</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
@@ -596,11 +654,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Total_Estimated_Hours__c - Total_Actual_Hours__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Calculated as total estimated hours - total actual hours</inlineHelpText>
+        <inlineHelpText>総予定時間から実際消費時間を引いたもの</inlineHelpText>
         <label>Total Hours Balance</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -609,11 +668,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Hours_Budget__c + Hours_Budget_from_Sub_Milestones__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Calculated as hours budget + hours budget from sub milestones</inlineHelpText>
+        <inlineHelpText>親子マイルストーンの総予定時間</inlineHelpText>
         <label>Total Hours Budget</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -622,11 +682,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Late_Tasks_in_Tasks_2__c + Late_Tasks_in_Sub_Milestones__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Number of incomplete and overdue tasks related to this milestone and its child milestones</inlineHelpText>
+        <inlineHelpText>このマイルストーンと、紐付く子マイルストーンの未完了遅延タスク</inlineHelpText>
         <label>Total Late Tasks</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -635,11 +696,12 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <externalId>false</externalId>
         <formula>Open_Tasks_in_Tasks__c + Open_Tasks_in_Sub_Milestones__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Number of incomplete tasks related to this milestone and its child milestones</inlineHelpText>
+        <inlineHelpText>このマイルストーンと、紐付く子マイルストーン全体の未完了タスク</inlineHelpText>
         <label>Total Open Tasks</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -674,39 +736,7 @@ IMAGE(&quot;http://chart.apis.google.com/chart?chxt=y&amp;chbh=a&amp;chs=300x225
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
     </nameField>
-    <namedFilters>
-        <fullName>nf_01I300000022xdvEAA_00N30000007czjLEAQ</fullName>
-        <active>true</active>
-        <field>Milestone1_Milestone__c.Parent_Milestone__c</field>
-        <filterItems>
-            <field>Milestone1_Milestone__c.Project__c</field>
-            <operation>equals</operation>
-            <valueField>$Source.Project__c</valueField>
-        </filterItems>
-        <filterItems>
-            <field>Milestone1_Milestone__c.Parent_Milestone__c</field>
-            <operation>equals</operation>
-            <value></value>
-        </filterItems>
-        <infoMessage>Parent Milestones must be part of the same project as the child milestone.  Also, Parent Milestone cannot also be a Child Milestone.</infoMessage>
-        <isOptional>false</isOptional>
-        <name>Milestone_Parent Milestone</name>
-        <sourceObject>Milestone1_Milestone__c</sourceObject>
-    </namedFilters>
-    <namedFilters>
-        <fullName>nf_01IE0000000HT73MAG_00NE0000000nwUIMAY</fullName>
-        <active>true</active>
-        <field>Milestone1_Milestone__c.Predecessor_Milestone__c</field>
-        <filterItems>
-            <field>Milestone1_Milestone__c.Project__c</field>
-            <operation>equals</operation>
-            <valueField>$Source.Project__c</valueField>
-        </filterItems>
-        <isOptional>false</isOptional>
-        <name>Milestone_Predecessor Milestone</name>
-        <sourceObject>Milestone1_Milestone__c</sourceObject>
-    </namedFilters>
-    <pluralLabel>Milestones</pluralLabel>
+    <pluralLabel>Milestone</pluralLabel>
     <searchLayouts>
         <customTabListAdditionalFields>Project__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Parent_Milestone__c</customTabListAdditionalFields>

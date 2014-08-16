@@ -111,6 +111,7 @@
         <name>CustomLabels</name>
     </types>
     <types>
+        <members>A__c</members>
         <members>Milestone1_Expense__c</members>
         <members>Milestone1_Log__c</members>
         <members>Milestone1_Milestone__c</members>
@@ -239,5 +240,5 @@
         <members>ja</members>
         <name>Translations</name>
     </types>
-    <version>23.0</version>
+    <version>30.0</version>
 </Package>
